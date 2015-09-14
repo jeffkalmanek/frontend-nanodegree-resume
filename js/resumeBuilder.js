@@ -58,8 +58,15 @@ var work = {
 			"employer": "AT&T",
 			"title": "Principal Product Development Engineer",
 			"location": "Redmond",
-			"dates": 2015,
-			"description": "working on CSAB and CE"
+			"dates": "Dec - 2011 to Present",
+			"description": "working on CSAB and CE",
+		},
+		{
+			"employer": "AOL",
+			"title": "Product Manager",
+			"location": "Seattle",
+			"dates": "March - 2000 to Dec - 2005",
+			"description": "Mobile Instant Messaging",
 		}
 	]
 }
@@ -108,6 +115,16 @@ for (job in work.jobs) {
 	var formattedEmployerTitle = formattedEmployer + formattedTitle;
 
 	$(".work-entry:last").append(formattedEmployerTitle);
+
+	var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+	$(".work-entry:last").append(formattedLocation);
+
+	var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+	$(".work-entry:last").append(formattedDates);
+
+	var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+	$(".work-entry:last").append(formattedDescription);
+
 
 };
 
