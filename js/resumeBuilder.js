@@ -17,14 +17,14 @@ var formattedRole = HTMLheaderRole.replace("%data%", role);
 var bio = {
 	"name": "Jeffrey Kalmanek",
 	"role": "Web Developer",
-	"welcomeMessage": "Hi There! ",
+	"welcomeMessage": "Let Me Work for You!",
 	"contacts" : {
 		"mobile": "206-555-5555",
 		"email": "jef.k@icloud.com",
 		"github": "jeffkalmanek"
 	},
 	"skills": ["product management", "sailing", "archery"],
-	"biopic": "app_logo_2_w320px.jpg"
+	"bioPic": "images/web_dev_logo-w120px-square.jpg"
 }
 
 /* education object */
@@ -59,14 +59,14 @@ var work = {
 			"title": "Principal Product Development Engineer",
 			"location": "Redmond",
 			"dates": "Dec - 2011 to Present",
-			"description": "working on CSAB and CE",
+			"description": "working on CSAB and CE"
 		},
 		{
 			"employer": "AOL",
 			"title": "Product Manager",
 			"location": "Seattle",
 			"dates": "March - 2000 to Dec - 2005",
-			"description": "Mobile Instant Messaging",
+			"description": "Mobile Instant Messaging"
 		}
 	]
 }
@@ -77,13 +77,20 @@ var portfolio = {
 	"projects": [
 		{
 			"title": "Build a Portfolio Web Site",
-			"dates": 2015,
+			"dates": "Aug - 2015",
 			"description": "a web site to show off my projects",
-			"images": ["https://github.com/jeffkalmanek/Project_1"]
+			"images": ["images/app_logo_1_w320px.jpg"]
+		},
+		{
+			"title": "Build a Resume Web Site",
+			"dates": "Sept - 2015",
+			"description": "a web site to show off my resume",
+			"images": ["images/app_logo_2_w320px.jpg"]
 		}
 	]
 
 }
+
 
 $("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
 $("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
@@ -91,6 +98,12 @@ $("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
 	/* also chanced from using the defined variable at the top of "name"
 	* and used the "bio object", but forgot how to use the notation.  Use "dot" notation
 	* but also remember that the code taking action has to be after the code defining the object */
+
+$("#topContacts").append(HTMLemail.replace("%data%", bio.contacts.mobile));
+$("#topContacts").append(HTMLgithub.replace("%data%", bio.contacts.email));
+$("#topContacts").append(HTMLmobile.replace("%data%", bio.contacts.github));
+$("#header").append(HTMLbioPic.replace("%data%", bio.bioPic));
+$("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
 
 if (bio.skills.length > 0) {
 
@@ -103,8 +116,10 @@ if (bio.skills.length > 0) {
 	formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
 	$("#skills").append(formattedSkill);
 	formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-	/* the above probably works better with a loop */
+	/* the above probably works better with a loop and uses
+	 * a nested ID between "header" and "skills" */
 };
+
 function displayWork() {
 	for (job in work.jobs) {
 
@@ -129,6 +144,55 @@ function displayWork() {
 };
 
 displayWork();
+
+function displayPortfolio() {
+	for (project in portfolio.projects) {
+
+		$("#projects").append(HTMLprojectStart);
+
+		var formattedProjectTitle = HTMLprojectTitle.replace("%data%", portfolio.projects[project].title);
+		$(".project-entry:last").append(formattedProjectTitle);
+
+		var formattedProjectDates = HTMLprojectDates.replace("%data%", portfolio.projects[project].dates);
+		$(".project-entry:last").append(formattedProjectDates);
+
+		var formattedProjectDescription = HTMLprojectDescription.replace("%data%", portfolio.projects[project].description);
+		$(".project-entry:last").append(formattedProjectDescription);
+
+		if (portfolio.projects[project].images.length >0) {
+			for (image in portfolio.projects[project].images) {
+				var formattedImage = HTMLprojectImage.replace("%data%", portfolio.projects[project]
+					.images[image]);
+				$(".project-entry:last").append(formattedImage);
+			};
+		};
+	};
+};
+
+displayPortfolio();
+
+
+/* trying encapsulation
+
+portfolio.display = function() {
+	for (project in portfolio.projects) {
+
+		$("#projects").append(HTMLprojectStart);
+
+		var formattedProjectTitle = HTMLprojectTitle.replace("%data%", portfolio.projects[project].title);
+		$(".project-entry:last").append(formattedProjectTitle);
+
+		var formattedProjectDates = HTMLprojectDates.replace("%data%", portfolio.projects[project].dates);
+		$(".project-entry:last").append(formattedProjectDates);
+
+		var formattedProjectDescription = HTMLprojectDescription.replace("%data%", portfolio.projects[project].description);
+		$(".project-entry:last").append(formattedProjectDescription);
+
+	};
+
+};
+
+*/
 
 /* keep the practice items below this comment */
 /*
