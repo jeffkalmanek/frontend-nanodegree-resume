@@ -1,17 +1,3 @@
-/*
-This is empty on purpose! Your code to build the resume will go here.
- */
-
-/* I'm leaving these four lines below to continue my experimentation.
-* But the code that manipulates index.html needs to go after the object/variable definitions
-*/
-
-var name = "Jeffrey K"; /* these values are different than the object values */
-var role = "Web Guy"
-
-var formattedName = HTMLheaderName.replace("%data%", name);
-var formattedRole = HTMLheaderRole.replace("%data%", role);
-
 /* bio object */
 
 var bio = {
@@ -21,10 +7,11 @@ var bio = {
 	"contacts" : {
 		"mobile": "206-555-5555",
 		"email": "jef.k@icloud.com",
-		"github": "jeffkalmanek"
+		"github": "jeffkalmanek",
+		"location": "Seattle"
 	},
 	"skills": ["product management", "sailing", "archery"],
-	"bioPic": "images/web_dev_logo-w120px-square.jpg"
+	"bioPic": "images/jake_profile_pic_120px_square.jpg"
 }
 
 /* education object */
@@ -108,8 +95,8 @@ $("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
 $("#topContacts").append(HTMLemail.replace("%data%", bio.contacts.mobile));
 $("#topContacts").append(HTMLgithub.replace("%data%", bio.contacts.email));
 $("#topContacts").append(HTMLmobile.replace("%data%", bio.contacts.github));
-$("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
 $("#header").append(HTMLbioPic.replace("%data%", bio.bioPic));
+$("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
 
 if (bio.skills.length > 0) {
 
@@ -202,8 +189,12 @@ function displayEducation() {
 
 displayEducation();
 
-/* trying encapsulation
+/* putting in the map */
 
+$("#mapDiv").append(googleMap);
+
+
+/* trying encapsulation
 
 portfolio.display = function() {
 	for (project in portfolio.projects) {
