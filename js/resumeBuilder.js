@@ -1,14 +1,54 @@
 /*
 This is empty on purpose! Your code to build the resume will go here.
  */
-var name = "Jeffrey Kalmanek";
-var role = "Web Developer"
+
+/* I'm leaving these four lines below to continue my experimentation.
+* But the code that manipulates index.html needs to go after the object/variable definitions
+*/
+
+var name = "Jeffrey K"; /* these values are different than the object values */
+var role = "Web Guy"
 
 var formattedName = HTMLheaderName.replace("%data%", name);
 var formattedRole = HTMLheaderRole.replace("%data%", role);
 
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
+/* bio object */
+
+var bio = {
+	"name": "Jeffrey Kalmanek",
+	"role": "Web Developer",
+	"welcomeMessage": "Hi There! ",
+	"contacts" : {
+		"mobile": "206-555-5555",
+		"email": "jef.k@icloud.com",
+		"github": "jeffkalmanek"
+	},
+	"skills": ["product management", "sailing", "archery"],
+	"biopic": "app_logo_2_w320px.jpg"
+}
+
+/* education object */
+
+var education = {
+	"schools": [
+		{
+			"name": "University of Washington",
+			"location": "Bothell, Washington",
+			"degree": "Masters",
+			"majors": ["CS"],
+			"dates": 2001,
+			"url": "http://example.com"
+		}
+	],
+	"onlineCourses": [
+		{
+			"title": "Front End Web Developer",
+			"school": "Udacity",
+			"dates": 2015,
+			"url": "http://www.udacity.com"
+		}
+	]
+}
 
 /* work object */
 
@@ -38,46 +78,56 @@ var portfolio = {
 
 }
 
-/* bio object */
+$("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
+$("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
+	/* showing that an extra variable isn't needed */
+	/* also chanced from using the defined variable at the top of "name"
+	* and used the "bio object", but forgot how to use the notation.  Use "dot" notation
+	* but also remember that the code taking action has to be after the code defining the object */
 
-var bio = {
-	"name": "Jeffrey Kalmanek",
-	"role": "Web Developer",
-	"welcomeMessage": "Hi There! ",
-	"contacts" : {
-		"mobile": "206-555-5555",
-		"email": "jef.k@icloud.com",
-		"github": "jeffkalmanek"
-	},
-	"skills": ["Product Management", "Sailing"]
-}
+if (bio.skills.length > 0) {
 
-/* education object */
+	$("#header").append(HTMLskillsStart);
 
-var education = {
-	"schools": [
-		{
-			"name": "University of Washington",
-			"location": "Bothell, Washington",
-			"degree": "Masters",
-			"majors": ["CS"],
-			"dates": 2001,
-			"url": "http://example.com"
-		}
-	],
-	"onlineCourses": [
-		{
-			"title": "Front End Web Developer",
-			"school": "Udacity",
-			"dates": 2015,
-			"url": "http://www.udacity.com"
-		}
-	]
-}
+	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
+	$("#skills").append(formattedSkill);
+	formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
+	$("#skills").append(formattedSkill);
+	formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
+	$("#skills").append(formattedSkill);
+	formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
+	/* the above probably works better with a loop */
+};
 
+for (job in work.jobs) {
 
+	$("#workExperience").append(HTMLworkStart);
+
+	var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+	var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+	var formattedEmployerTitle = formattedEmployer + formattedTitle;
+
+	$(".work-entry:last").append(formattedEmployerTitle);
+
+};
 
 /* keep the practice items below this comment */
+/*
+ */
+/* for loop example
+ * for(var i = 0; i < 9; i++) { console.log("goo", i); }
+ */
+
+/* function to find < > characters and escape them, the g makes it global? */
+
+//var charEscape = function(_html) {
+//    var newHTML = _html;
+//
+//    newHTML = _html.replace(/</g, "&lt;");
+//    newHTML = newHTML.replace(/>/g, "&gt;");
+//
+//    return newHTML;
+//};
 
 //work.employer = "AT&T";
 //work.years = "5";
