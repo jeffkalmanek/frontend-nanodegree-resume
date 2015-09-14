@@ -36,15 +36,21 @@ var education = {
 			"location": "Bothell, Washington",
 			"degree": "Masters",
 			"majors": ["CS"],
-			"dates": 2001,
-			"url": "http://example.com"
+			"dates": "Sept 1999 - Aug 2001"
+		},
+		{
+			"name": "University of Michigan",
+			"location": "Ann Arbor, Michigan",
+			"degree": "Bachelors of Science - Engineering",
+			"majors": ["Computer Engineering"],
+			"dates": "Sept 1985 - Dec 1989"
 		}
 	],
 	"onlineCourses": [
 		{
 			"title": "Front End Web Developer",
 			"school": "Udacity",
-			"dates": 2015,
+			"dates": "July 2015 - Present",
 			"url": "http://www.udacity.com"
 		}
 	]
@@ -102,8 +108,8 @@ $("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
 $("#topContacts").append(HTMLemail.replace("%data%", bio.contacts.mobile));
 $("#topContacts").append(HTMLgithub.replace("%data%", bio.contacts.email));
 $("#topContacts").append(HTMLmobile.replace("%data%", bio.contacts.github));
-$("#header").append(HTMLbioPic.replace("%data%", bio.bioPic));
 $("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
+$("#header").append(HTMLbioPic.replace("%data%", bio.bioPic));
 
 if (bio.skills.length > 0) {
 
@@ -159,7 +165,7 @@ function displayPortfolio() {
 		var formattedProjectDescription = HTMLprojectDescription.replace("%data%", portfolio.projects[project].description);
 		$(".project-entry:last").append(formattedProjectDescription);
 
-		if (portfolio.projects[project].images.length >0) {
+		if (portfolio.projects[project].images.length > 0) {
 			for (image in portfolio.projects[project].images) {
 				var formattedImage = HTMLprojectImage.replace("%data%", portfolio.projects[project]
 					.images[image]);
@@ -171,8 +177,33 @@ function displayPortfolio() {
 
 displayPortfolio();
 
+function displayEducation() {
+	for (school in education.schools) {
+
+		$("#education").append(HTMLschoolStart);
+
+		var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
+		$(".education-entry:last").append(formattedSchoolName);
+
+		var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
+		$(".education-entry:last").append(formattedSchoolLocation);
+
+		var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
+		$(".education-entry:last").append(formattedSchoolDegree);
+
+		var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[school].majors);
+		$(".education-entry:last").append(formattedSchoolMajor);
+
+		var formattedSchoolDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
+		$(".education-entry:last").append(formattedSchoolDates);
+
+	};
+};
+
+displayEducation();
 
 /* trying encapsulation
+
 
 portfolio.display = function() {
 	for (project in portfolio.projects) {
@@ -188,8 +219,14 @@ portfolio.display = function() {
 		var formattedProjectDescription = HTMLprojectDescription.replace("%data%", portfolio.projects[project].description);
 		$(".project-entry:last").append(formattedProjectDescription);
 
+		if (portfolio.projects[project].images.length > 0) {
+			for (image in portfolio.projects[project].images) {
+				var formattedImage = HTMLprojectImage.replace("%data%", portfolio.projects[project]
+					.images[image]);
+				$(".project-entry:last").append(formattedImage);
+			};
+		};
 	};
-
 };
 
 */
