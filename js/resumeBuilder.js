@@ -1,4 +1,5 @@
 // Project 2 submission by Jeffrey Kalmanek
+// fixed issues from first review
 
 /* bio object */
 
@@ -14,7 +15,7 @@ var bio = {
 	},
 	"skills": ["product management", "sailing", "archery"],
 	"bioPic": "images/jake_profile_pic_120px_square.jpg"
-}
+};
 
 /* education object */
 
@@ -43,7 +44,7 @@ var education = {
 			"url": "http://www.udacity.com"
 		}
 	]
-}
+};
 
 /* work object */
 
@@ -64,7 +65,7 @@ var work = {
 			"description": "Mobile Instant Messaging"
 		}
 	]
-}
+};
 
 /* projects object */
 
@@ -84,39 +85,7 @@ var portfolio = {
 		}
 	]
 
-}
-
-/* taking out the old bio display code
-
-$("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
-$("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
-	/* showing that an extra variable isn't needed */
-	/* also chanced from using the defined variable at the top of "name"
-	* and used the "bio object", but forgot how to use the notation.  Use "dot" notation
-	* but also remember that the code taking action has to be after the code defining the object */
-
-/* also taking out the old bio display code
-$("#topContacts").append(HTMLemail.replace("%data%", bio.contacts.mobile));
-$("#topContacts").append(HTMLgithub.replace("%data%", bio.contacts.email));
-$("#topContacts").append(HTMLmobile.replace("%data%", bio.contacts.github));
-$("#header").append(HTMLbioPic.replace("%data%", bio.bioPic));
-$("#header").append(HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage));
-
-if (bio.skills.length > 0) {
-
-	$("#header").append(HTMLskillsStart);
-
-	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
-	$("#skills").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
-	$("#skills").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
-	$("#skills").append(formattedSkill);
-	formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
-	/* the above probably works better with a loop and uses
-	 * a nested ID between "header" and "skills"
 };
-*/
 
 bio.display = function() {
 	var formattedName = HTMLheaderName.replace("%data%", bio.name);
