@@ -86,6 +86,7 @@ var portfolio = {
 
 }
 
+/* taking out the old bio display code
 
 $("#header").prepend(HTMLheaderRole.replace("%data%", bio.role));
 $("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
@@ -94,6 +95,7 @@ $("#header").prepend(HTMLheaderName.replace("%data%", bio.name));
 	* and used the "bio object", but forgot how to use the notation.  Use "dot" notation
 	* but also remember that the code taking action has to be after the code defining the object */
 
+/* also taking out the old bio display code
 $("#topContacts").append(HTMLemail.replace("%data%", bio.contacts.mobile));
 $("#topContacts").append(HTMLgithub.replace("%data%", bio.contacts.email));
 $("#topContacts").append(HTMLmobile.replace("%data%", bio.contacts.github));
@@ -112,11 +114,34 @@ if (bio.skills.length > 0) {
 	$("#skills").append(formattedSkill);
 	formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
 	/* the above probably works better with a loop and uses
-	 * a nested ID between "header" and "skills" */
+	 * a nested ID between "header" and "skills"
+};
+*/
+
+bio.display = function() {
+	var formattedName = HTMLheaderName.replace("%data%", bio.name);
+	var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+	var formattedImage = HTMLbioPic.replace("%data%", bio.bioPic);
+	var formattedMessage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+
+	$("#header").prepend(formattedRole).prepend(formattedName).append(formattedImage).append(formattedMessage);
+	$("#header").append(HTMLskillsStart);
+
+	$("#topContacts, #footerContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
+	$("#topContacts, #footerContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
+	$("#topContacts, #footerContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
+
+	for(var skill in bio.skills) {
+		var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
+		$("#skills").append(formattedSkill);
+	};
 };
 
-function displayWork() {
-	for (job in work.jobs) {
+bio.display();
+
+work.display = function () {
+
+	for (var job in work.jobs) {
 
 		$("#workExperience").append(HTMLworkStart);
 
@@ -138,10 +163,10 @@ function displayWork() {
 	};
 };
 
-displayWork();
+work.display();
 
-function displayPortfolio() {
-	for (project in portfolio.projects) {
+portfolio.display = function () {
+	for (var project in portfolio.projects) {
 
 		$("#projects").append(HTMLprojectStart);
 
@@ -164,10 +189,10 @@ function displayPortfolio() {
 	};
 };
 
-displayPortfolio();
+portfolio.display();
 
-function displayEducation() {
-	for (school in education.schools) {
+education.display = function () {
+	for (var school in education.schools) {
 
 		$("#education").append(HTMLschoolStart);
 
@@ -189,8 +214,9 @@ function displayEducation() {
 	};
 };
 
-displayEducation();
+education.display();
 
 /* putting in the map */
 
 $("#mapDiv").append(googleMap);
+
